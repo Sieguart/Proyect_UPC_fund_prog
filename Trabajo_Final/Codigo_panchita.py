@@ -2,7 +2,7 @@
 # SISTEMA DE FACTURACIÓN – RESTAURANTE PANCHITA
 # ==============================================================================
 
-# --- CAPÍTULO 2: PROPUESTA DE INNOVACIÓN (MODULARIDAD) ---
+# --- Definir las variables ---
 
 def calcular_igv(subtotal):
     """Calcula el 18% de IGV sobre el consumo total."""
@@ -39,14 +39,19 @@ def validar_flotante(mensaje):
         except ValueError:
             print("Error: Debe ingresar un valor numérico válido.")
 
+#Funcion de propina inahabilitada
+#def calcular_propina(monto_base, porcentaje_propina):
+   #"""Calcular el monto de la propina basado en un porcentaje."""
+    #return monto_base * (porcentaje_propina / 100)
 
-# --- PROCESO PRINCIPAL ---
+
+# --- Proceso Principal ---
 def main():
     print("===============================================")
     print("   SISTEMA DE FACTURACIÓN – RESTAURANTE PANCHITA")
     print("===============================================\n")
     
-    # 1. ENTRADAS INICIALES
+    # 1. Entradas Iniciales
     num_personas = validar_entero("Ingrese el número de personas en la mesa: ")
     while num_personas <= 0:
         print("Debe haber al menos 1 persona.")
@@ -54,7 +59,7 @@ def main():
         
     lista_productos = []
     
-    # 2. INGRESO DE PEDIDOS (Bucle while)
+    # 2. Ingreso de Pedidos (Bucle while)
     # Permite al mozo seguir agregando platos a una misma cuenta hasta finalizar.
     continuar = "s"
     print("\n--- Registro de Pedidos ---")
@@ -76,26 +81,32 @@ def main():
         while continuar.lower() not in ['s', 'n']:
             continuar = input("Por favor, responda con 's' (sí) o 'n' (no): ")
 
-    # 3. CÁLCULO AUTOMÁTICO DE SUBTOTALES (Bucle for)
+    # 3. Calculo Automatico de Subtotales (Bucle for)
     # Recorre la lista de consumos finales para calcular el total acumulado.
     subtotal_total = 0.0
     for prod in lista_productos:
         subtotal_total += prod["subtotal_item"]
         
-    # 4. APLICACIÓN DE DESCUENTOS E IMPUESTOS
+    # 4. Aplicacion de Descuentos e Impuestos
     porcentaje_desc = validar_flotante("\nIngrese el porcentaje de descuento a aplicar (0 si no aplica): ")
     descuento_aplicado = aplicar_descuento(subtotal_total, porcentaje_desc)
     
-    # Base imponible tras el descuento para calcular el IGV
+    # Base tras el descuento para calcular el IGV
     subtotal_con_descuento = subtotal_total - descuento_aplicado
     igv = calcular_igv(subtotal_con_descuento)
     
+    #El total del consumo con impuesto
     total_final = subtotal_con_descuento + igv
     
-    # 5. DIVISOR DE CUENTAS
+    #Funcion de propina inahabilitada
+    # --- Calculo de la propina ---
+    #porcentaje_propina = validar_flotante("Ingrese el porcentaje de propina sugerido (ej. 10, o 0 si no aplica): ")
+    #propina_aplicada = calcular_propina(total_consumo, porcentaje_propina)
+
+    # 5. Divisor de cuentas
     monto_por_persona = total_final / num_personas
 
-    # --- INTERFAZ Y SALIDAS (OUTPUTS) ---
+    # --- Interfaz y Salidas ---
     # Generación de Ticket de Resumen
     print("\n===============================================")
     print("         TICKET DE CONSUMO – PANCHITA           ")
@@ -108,6 +119,7 @@ def main():
     print(f"Subtotal Neto:                      S/. {subtotal_total:.2f}")
     print(f"Descuento Aplicado ({porcentaje_desc}%):          S/. {descuento_aplicado:.2f}")
     print(f"IGV (18%):                          S/. {igv:.2f}")
+    #print(f"Propina ({porcentaje_propina}%):                     S/. {propina_aplicada:.2f}")
     print("-----------------------------------------------")
     print(f"TOTAL A PAGAR:                      S/. {total_final:.2f}")
     print("===============================================")
