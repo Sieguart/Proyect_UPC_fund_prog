@@ -38,12 +38,7 @@ def validar_flotante(mensaje):
             return valor
         except ValueError:
             print("Error: Debe ingresar un valor numérico válido.")
-
-#Funcion de propina inahabilitada
-#def calcular_propina(monto_base, porcentaje_propina):
-   #"""Calcular el monto de la propina basado en un porcentaje."""
-    #return monto_base * (porcentaje_propina / 100)
-
+#No tocar mas la variables...
 
 # --- Proceso Principal ---
 def main():
@@ -80,6 +75,7 @@ def main():
         continuar = input("\n¿Desea agregar otro producto? (s/n): ")
         while continuar.lower() not in ['s', 'n']:
             continuar = input("Por favor, responda con 's' (sí) o 'n' (no): ")
+    #No tocar mas.
 
     # 3. Calculo Automatico de Subtotales (Bucle for)
     # Recorre la lista de consumos finales para calcular el total acumulado.
@@ -98,16 +94,11 @@ def main():
     #El total del consumo con impuesto
     total_final = subtotal_con_descuento + igv
     
-    #Funcion de propina inahabilitada
-    # --- Calculo de la propina ---
-    #porcentaje_propina = validar_flotante("Ingrese el porcentaje de propina sugerido (ej. 10, o 0 si no aplica): ")
-    #propina_aplicada = calcular_propina(total_consumo, porcentaje_propina)
-
     # 5. Divisor de cuentas
     monto_por_persona = total_final / num_personas
 
     # --- Interfaz y Salidas ---
-    # Generación de Ticket de Resumen
+    # Generación de Ticket Resumen
     print("\n===============================================")
     print("         TICKET DE CONSUMO – PANCHITA           ")
     print("===============================================")
@@ -119,7 +110,6 @@ def main():
     print(f"Subtotal Neto:                      S/. {subtotal_total:.2f}")
     print(f"Descuento Aplicado ({porcentaje_desc}%):          S/. {descuento_aplicado:.2f}")
     print(f"IGV (18%):                          S/. {igv:.2f}")
-    #print(f"Propina ({porcentaje_propina}%):                     S/. {propina_aplicada:.2f}")
     print("-----------------------------------------------")
     print(f"TOTAL A PAGAR:                      S/. {total_final:.2f}")
     print("===============================================")
