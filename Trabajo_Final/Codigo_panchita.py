@@ -40,6 +40,7 @@ def validar_flotante(mensaje):
             print("Error: Debe ingresar un valor numérico válido.")
 #No tocar mas la variables...
 
+
 # --- Proceso Principal ---
 def main():
     print("===============================================")
@@ -118,6 +119,8 @@ def main():
     print(f"MONTO POR PERSONA:                  S/. {monto_por_persona:.2f}")
     print("===============================================\n")
 
+
 # Ejecución del programa
 if __name__ == "__main__":
     main()
+    #Fin.
